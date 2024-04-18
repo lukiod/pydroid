@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+
+    <RelativeLayout
+
+        android:id="@+id/android_lar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints,UnusedAttribute"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <TextView
+            android:id="@+id/othersign"
+            android:layout_width="276dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="405dp"
+            android:gravity="top"
+            android:text="Forgot Password??"
+            android:textAppearance="@style/password" />
+
+        <!-- drawable/icons8_goog.xml -->
+
+
+        <TextView
+            android:id="@+id/pydroid"
+            android:layout_width="98dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="19dp"
+            android:gravity="top"
+            android:text="@string/pydroid"
+            android:textAppearance="@style/pydroid" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="103dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/pydroid"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="73dp"
+            android:gravity="top"
+            android:text="@string/email"
+            android:textAppearance="@style/email" />
+
+        <View
+            android:id="@+id/rectangle_1"
+            android:layout_width="287dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="177dp"
+            android:background="@drawable/rectangle_1" />
+
+        <EditText
+            android:id="@+id/loginEmail"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="17dp"
+            android:ems="10"
+            android:hint="pydroid@gmail.com"
+            android:inputType="textEmailAddress"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="103dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/loginEmail"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="15dp"
+            android:gravity="top"
+            android:text="@string/password"
+            android:textAppearance="@style/password" />
+
+        <View
+            android:id="@+id/rectangle_2"
+            android:layout_width="284dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="274dp"
+            android:background="@drawable/rectangle_2" />
+
+        <!--
+        Font family: Inter
+        Line height: 24sp
+        -->
+
+        <!-- styles.xml -->
+
+
+        <!-- strings.xml -->
+
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="274dp"
+            android:ems="10"
+            android:hint="Pydroid@023"
+            android:inputType="textPassword"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/loginBtn"
+
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="336dp"
+            android:layout_marginEnd="31dp"
+            android:text="Login"
+            app:cornerRadius="0dp"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/gotoRegister"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="184dp"
+            android:layout_marginTop="562dp"
+            android:text="Create Account"
+            app:cornerRadius="0dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/already_hav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="520dp"
+            android:gravity="top"
+            android:text="@string/already_hav"
+            android:textAppearance="@style/already_hav" />
+
+        <Button
+            android:id="@+id/frgtpwd"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="448dp"
+            android:text="Forogot Password"
+            app:cornerRadius="0dp"
+            tools:ignore="InvalidId" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

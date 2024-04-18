@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:icon="@drawable/icons8h"
+        android:id="@+id/home1"/>
+    <item android:title="@string/discussion"
+        android:icon="@drawable/icons8c"
+        android:id="@+id/chat"/>
+    <item android:title="Search"
+        android:icon="@drawable/icons8sea"
+        android:id="@+id/sear"/>
+    <item android:title="Setting"
+        android:icon="@drawable/icons8set"
+        android:id="@+id/settin"/>
+
+</menu>

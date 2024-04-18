@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">PYDROID</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="title_activity_admin">Admin</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="pydroid">
+        Pydroid
+    </string>
+    <string name="get_started">
+        Get started
+    </string>
+    <string name="email">
+            Email
+        </string>
+    <string name="password">
+            Password
+        </string>
+    <string name="already_hav" tools:ignore="StringEscaping">
+            Don\'t have a Account?Signup
+        </string>
+    <string name="default_web_client_id">53477657994-vbbinqnqsluhmua7ehoknoen2o7t2s00.apps.googleusercontent.com</string>
+    <string name="discussion">Discussion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

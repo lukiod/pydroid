@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <RelativeLayout
+        android:id="@+id/android_lar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints,UnusedAttribute"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="-2dp">
+
+        <TextView
+            android:id="@+id/pydroid"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="48dp"
+            android:gravity="top"
+            android:text="@string/pydroid"
+            android:textAppearance="@style/pydroid"
+            android:textSize="70dp" />
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="103dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="187dp"
+            android:gravity="top"
+            android:text="Name"
+            android:textAppearance="@style/email" />
+
+        <View
+            android:id="@+id/rectangle_1"
+            android:layout_width="287dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="225dp"
+            android:background="@drawable/rectangle_1" />
+
+        <EditText
+            android:id="@+id/registerName"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="222dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/email1"
+            android:layout_width="103dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="281dp"
+            android:gravity="top"
+            android:text="@string/email"
+            android:textAppearance="@style/email" />
+
+        <View
+            android:id="@+id/rectangle_2"
+            android:layout_width="287dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="320dp"
+            android:background="@drawable/rectangle_1" />
+
+
+        <View
+            android:id="@+id/rectangle_3"
+            android:layout_width="287dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="415dp"
+            android:background="@drawable/rectangle_1" />
+
+        <TextView
+            android:id="@+id/phon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="377dp"
+            android:gravity="top"
+            android:text="Phone Number with country code"
+            android:textAppearance="@style/email" />
+
+        <TextView
+            android:id="@+id/pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="470dp"
+            android:gravity="top"
+            android:text="Password"
+            android:textAppearance="@style/email" />
+
+        <EditText
+            android:id="@+id/registerPhone"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="416dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="+911234567890"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/log1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="634dp"
+            android:gravity="top"
+            android:text="Back To Login!"
+            android:textAppearance="@style/email" />
+
+        <View
+            android:id="@+id/rectangle_4"
+            android:layout_width="287dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="505dp"
+            android:background="@drawable/rectangle_1" />
+
+        <EditText
+            android:id="@+id/registerEmail"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="317dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="pydroid@gmail.com"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/registerPassword"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="502dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="Pydroid@123"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/registerBtn"
+
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="560dp"
+            android:layout_marginEnd="31dp"
+            android:text="Create Account"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/gotoLogin"
+
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="193dp"
+            android:layout_marginTop="624dp"
+            android:layout_marginEnd="31dp"
+            android:text="Login"
+            tools:ignore="MissingConstraints" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
