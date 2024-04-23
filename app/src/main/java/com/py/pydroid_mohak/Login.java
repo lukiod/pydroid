@@ -61,6 +61,7 @@ public class Login extends AppCompatActivity {
                                         checkUserAccessLevel(user.getUid());
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         finish();
+
                                     } else {
                                         Toast.makeText(Login.this, "Please verify your email to access the app.", Toast.LENGTH_SHORT).show();
                                     }

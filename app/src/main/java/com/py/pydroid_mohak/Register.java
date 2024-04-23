@@ -79,9 +79,11 @@ public class Register extends AppCompatActivity {
                                             } else {
                                                 Toast.makeText(Register.this, "Failed to send verification email", Toast.LENGTH_SHORT).show();
                                             }
-                                            startActivity(new Intent(getApplicationContext(), Register.class));
+
                                         }
                                     });
+                                    startActivity(new Intent(getApplicationContext(), Register.class));
+                                    finish();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -98,6 +100,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
             }
         });
     }
