@@ -23,6 +23,7 @@ public class forgotpwd extends AppCompatActivity {
 
     private EditText emailEditText; // Use descriptive variable names
     private Button forgotPwdBtn;
+    private Button backtologin;
     private FirebaseAuth fAuth;
 
     @SuppressLint("MissingInflatedId")
@@ -33,6 +34,7 @@ public class forgotpwd extends AppCompatActivity {
 
         // Find views by ID with error handling
         emailEditText = findViewById(R.id.loginEmail1);
+        backtologin=findViewById(R.id.backtologin);
         if (emailEditText == null) {
             Log.e("forgotpwd", "Email EditText not found with ID loginEmail1");
             return;
@@ -44,6 +46,12 @@ public class forgotpwd extends AppCompatActivity {
         }
 
         fAuth = FirebaseAuth.getInstance();
+        backtologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Login.class));
+            }
+        });
 
         forgotPwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,5 +82,7 @@ public class forgotpwd extends AppCompatActivity {
                         });
             }
         });
+
+
     }
 }

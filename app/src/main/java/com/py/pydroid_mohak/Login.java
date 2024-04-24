@@ -1,17 +1,16 @@
 package com.py.pydroid_mohak;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import android.util.*;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,12 +54,13 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     FirebaseUser user = authResult.getUser();
+                                    assert user != null;
                                     if (user.isEmailVerified()) {
                                         // Email verified, proceed with checking access level
                                         Toast.makeText(Login.this, "Loggedin Successfully", Toast.LENGTH_SHORT).show();
                                         checkUserAccessLevel(user.getUid());
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        finish();
+
 
                                     } else {
                                         Toast.makeText(Login.this, "Please verify your email to access the app.", Toast.LENGTH_SHORT).show();
@@ -127,12 +127,12 @@ public class Login extends AppCompatActivity {
         return valid;
     }
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null && currentUser.isEmailVerified()) { // Check if email is verified
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
-
     }
 }

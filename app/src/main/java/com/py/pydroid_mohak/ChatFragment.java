@@ -1,5 +1,6 @@
 package com.py.pydroid_mohak;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class ChatFragment extends Fragment {
     private ArrayAdapter<String> adapter;
     private ArrayList<String> chatList;
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ChatFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        view.findViewById(R.id.sendButton).setOnClickListener(v -> sendMessage());
         usersCollection = db.collection("Users");
         chatCollection = db.collection("Rooms").document("0").collection("chat"); // Fixed room ID of 0
 
@@ -52,7 +55,7 @@ public class ChatFragment extends Fragment {
 
         loadChatMessages();
 
-        view.findViewById(R.id.sendButton).setOnClickListener(v -> sendMessage());
+
 
         return view;
     }

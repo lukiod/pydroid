@@ -26,9 +26,9 @@
         <activity android:name=".Admin" />
         <activity
             android:name=".forgotpwd"
-            android:exported="false" />
+            />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop" />
+            />
     </application>
 </manifest>

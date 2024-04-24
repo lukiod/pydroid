@@ -1,5 +1,6 @@
 package com.py.pydroid_mohak;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,43 +32,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+                Fragment fragment = null;
+
                 if (itemId == R.id.chat) {
-                    loadFragment(new ChatFragment(), false);
-                } else if (itemId == R.id.home1) {
-                    loadFragment(new home(), false);
+                    fragment = new ChatFragment();
                 } else if (itemId == R.id.sear) {
-                    loadFragment(new search(), false);
+                    fragment = new search(); // Assuming the class name is SearchFragment
                 } else if (itemId == R.id.settin) {
-                    loadFragment(new setting(), false);
+                    fragment = new setting(); // Assuming the class name is SettingFragment
+                } else {
+                    fragment = new home(); // Assuming the class name is HomeFragment
                 }
-                // Removed the else block that was always loading 'home' fragment
+
+                if (fragment != null) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.frame1, fragment);
+                    transaction.commit();
+                }
                 return true;
             }
         });
-
-        // Initial fragment load (if needed)
-        if (savedInstanceState == null) {
-            loadFragment(new home(), true); // Or any other fragment you want to show initially
-        }
-    }
-
-    public void loadFragment(Fragment fragment, boolean isAppInitialized) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (isAppInitialized) {
-            transaction.add(R.id.frame1, fragment);
-        } else {
-            transaction.replace(R.id.frame1, fragment);
-        }
-        transaction.commit();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null || !currentUser.isEmailVerified()) {
             startActivity(new Intent(getApplicationContext(), Login.class));
-            finish();
         }
     }
 }

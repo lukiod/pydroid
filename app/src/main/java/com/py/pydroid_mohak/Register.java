@@ -63,6 +63,7 @@ public class Register extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     FirebaseUser user = fAuth.getCurrentUser();
+                                    assert user != null;
                                     user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -82,8 +83,7 @@ public class Register extends AppCompatActivity {
 
                                         }
                                     });
-                                    startActivity(new Intent(getApplicationContext(), Register.class));
-                                    finish();
+
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

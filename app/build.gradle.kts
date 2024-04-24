@@ -57,13 +57,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
@@ -73,7 +73,10 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.legacy.support.v4)
     implementation("org.jetbrains:annotations:15.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2") // Or latest version
     implementation(libs.play.services.auth)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
 
 
 
