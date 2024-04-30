@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".setting">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <View
+        android:id="@+id/rectangle_6"
+        android:layout_width="360dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle_6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/seting"
+        android:layout_width="115dp"
+        android:layout_height="51dp"
+        android:gravity="top"
+        android:text="Setting"
+        android:textAppearance="@style/chat"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangle_6"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_6"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_6" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="8dp"
+        android:text="Profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_6"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:text="Delete Account"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/instructorButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:text="Instructor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAccountButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/becomeInstructorButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:text="Become a Instructor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instructorButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/signout"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:text="Sign Out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/becomeInstructorButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
