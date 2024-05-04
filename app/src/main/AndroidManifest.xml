@@ -13,10 +13,13 @@
         android:theme="@style/Theme.PYDROID"
         tools:targetApi="31">
         <activity
-            android:name=".instructor.courses"
+            android:name=".instructor.CreateActivity"
             android:exported="false" />
         <activity
-            android:name=".instructor.create"
+            android:name=".instructor.CourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".instructor.CreateActivity"
             android:exported="false" />
         <activity
             android:name=".InstructorActivity"

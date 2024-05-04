@@ -11,8 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.py.pydroid_mohak.instructor.courses;
-import com.py.pydroid_mohak.instructor.create;
+import com.py.pydroid_mohak.instructor.CourseActivity;
+import com.py.pydroid_mohak.instructor.CreateActivity;
 
 public class InstructorActivity extends AppCompatActivity {
     @Override
@@ -32,7 +32,7 @@ public class InstructorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the CreateCourseActivity when the button is clicked
-                Intent intent = new Intent(InstructorActivity.this, create.class);
+                Intent intent = new Intent(InstructorActivity.this, CreateActivity.class);
                 startActivity(intent);
             }
         });
@@ -40,7 +40,7 @@ public class InstructorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the CreateCourseActivity when the button is clicked
-                Intent intent = new Intent(InstructorActivity.this, courses.class);
+                Intent intent = new Intent(InstructorActivity.this, CourseActivity.class);
                 startActivity(intent);
             }
         });
