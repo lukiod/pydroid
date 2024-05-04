@@ -37,5 +37,13 @@
     <string name="chat">
         Chat
     </string>
+    <string-array name="courses_array">
+        <item>Java</item>
+        <item>Python</item>
+        <item>C++</item>
+        <item>Rust</item>
+        <item>Go</item>
+        <!-- Add more courses as needed -->
+    </string-array>
 
 </resources>

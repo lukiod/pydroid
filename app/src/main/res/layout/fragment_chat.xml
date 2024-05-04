@@ -7,9 +7,7 @@
     <ListView
         android:id="@+id/chatListView"
         android:layout_width="wrap_content"
-        android:layout_height="586dp"
-        android:layout_above="@+id/messageLayout"
-        android:layout_marginBottom="10dp"
+        android:layout_height="584dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="1dp"
         android:stackFromBottom="true"

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,8 +18,8 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ChatFragment extends Fragment {
@@ -31,8 +30,8 @@ public class ChatFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private CollectionReference usersCollection, chatCollection;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> chatList;
+    private ChatMessageAdapter adapter;
+    private ArrayList<ChatMessage> chatList;
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -50,18 +49,16 @@ public class ChatFragment extends Fragment {
         messageEditText = view.findViewById(R.id.messageEditText);
 
         chatList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, chatList);
+        adapter = new ChatMessageAdapter(getContext(), R.layout.list_item_chat, chatList);
         chatListView.setAdapter(adapter);
 
         loadChatMessages();
-
-
 
         return view;
     }
 
     private void loadChatMessages() {
-        chatCollection.orderBy("timestamp", Query.Direction.ASCENDING) // Assuming you have a timestamp field for ordering
+        chatCollection.orderBy("timestamp", Query.Direction.ASCENDING)
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         Toast.makeText(getContext(), "Error loading messages: " + error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -76,7 +73,11 @@ public class ChatFragment extends Fragment {
                             usersCollection.document(senderId).get().addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
                                     String username = task.getResult().getString("FullName"); // Accessing "FullName" field
-                                    chatList.add(username + ": " + message);
+                                    String profileImageUrl = task.getResult().getString("profileImageUrl"); // Accessing profile image URL
+
+                                    // Create a new ChatMessage object with sender's name, message, and profile image URL
+                                    ChatMessage chatMessage = new ChatMessage(username, message, profileImageUrl);
+                                    chatList.add(chatMessage);
                                     adapter.notifyDataSetChanged();
                                     chatListView.smoothScrollToPosition(chatList.size() - 1);
                                 } else {
@@ -87,7 +88,6 @@ public class ChatFragment extends Fragment {
                     }
                 });
     }
-
 
     public void sendMessage() {
         String message = messageEditText.getText().toString().trim();
