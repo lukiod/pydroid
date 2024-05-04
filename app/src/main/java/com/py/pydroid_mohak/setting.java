@@ -1,10 +1,15 @@
 package com.py.pydroid_mohak;
 
+import static android.content.ContentValues.TAG;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +26,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class setting extends Fragment {
@@ -29,6 +35,8 @@ public class setting extends Fragment {
     // ... other button declarations ...
     private Button signOutButton;
     private Button delete;
+    private Button bi;
+    private Button instructorButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,8 +49,28 @@ public class setting extends Fragment {
         // ... other findViewById calls ...
         signOutButton = view.findViewById(R.id.signout); // Make sure the ID matches your button in XML
         delete=view.findViewById( R.id.deleteAccountButton);
+        bi=view.findViewById( R.id.becomeInstructorButton );
+        instructorButton=view.findViewById( R.id.instructorButton );
+        checkIsUser();
+
 
         mAuth = FirebaseAuth.getInstance();
+        bi.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("QueryPermissionsNeeded")
+            @Override
+            public void onClick(View v) {
+                openWebLink( "https://forms.gle/avYDKpjhk7smLEXn6" );
+            }
+
+        });
+        instructorButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), InstructorActivity.class);
+                startActivity(intent);
+            }
+        } );
+
 
         // Set onClickListener for profile button
         profileButton.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +164,41 @@ public class setting extends Fragment {
         builder.show();
     }
 
+    private void openWebLink(String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+    private void checkIsUser() {
+        // Get the current user's ID
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // Reference to the user document in Firestore
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("Users").document(userId);
+
+        // Retrieve the user document from Firestore
+        userRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                // Get the value of the "isUser" field
+                String isUser = documentSnapshot.getString("isUser");
+
+                // Check if the user is an instructor (isUser != "1")
+                if (!"1".equals(isUser)) {
+                    // User is an instructor, show the instructorButton
+                    instructorButton.setVisibility(View.VISIBLE);
+                } else {
+                    // User is not an instructor, hide the instructorButton
+                    instructorButton.setVisibility(View.GONE);
+                }
+            } else {
+                // User document does not exist
+                Log.d(TAG, "User document does not exist");
+            }
+        }).addOnFailureListener(e -> {
+            // Failed to retrieve user document
+            Log.e(TAG, "Failed to retrieve user document", e);
+        });
+    }
 
     private void deleteAccountAfterReAuthentication() {
         FirebaseUser currentUser = mAuth.getCurrentUser();

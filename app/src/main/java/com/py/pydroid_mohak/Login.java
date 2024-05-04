@@ -106,10 +106,7 @@ public class Login extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     finish();
                 }
-                else {
-                    startActivity(new Intent(getApplicationContext(),Admin.class));
-                    finish();
-                }
+
 
             }
         });
