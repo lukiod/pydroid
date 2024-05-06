@@ -1,7 +1,10 @@
 package com.py.pydroid_mohak;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,19 +115,34 @@ public class home extends Fragment {
                 itemView.setOnClickListener(v -> {
                     if (subitemsLayout.getVisibility() == View.GONE) {
                         subitemsLayout.setVisibility(View.VISIBLE);
-                        // Fetch and display subitems from Firestore
                         FirebaseFirestore.getInstance()
                                 .collection("courses")
-                                .document(course.getId()) // courseId should be accessible here
+                                .document(course.getId())
                                 .collection("subitems")
                                 .get()
                                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                                    subitemsLayout.removeAllViews(); // Clear existing subitems
+                                    subitemsLayout.removeAllViews();
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                         String subitemName = document.getString("name");
-                                        // Create a TextView for each subitem and add it to the layout
+                                        String subitemLink = document.getString("link");
+
                                         TextView subitemTextView = new TextView(itemView.getContext());
                                         subitemTextView.setText(subitemName);
+                                        subitemTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                                        subitemTextView.setPadding(40, 20, 0, 20);
+                                        subitemTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.WRAP_CONTENT));
+
+                                        subitemTextView.setOnClickListener(subitemView -> {
+                                            if (!subitemLink.isEmpty()) {
+                                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(subitemLink));
+                                                itemView.getContext().startActivity(browserIntent);
+                                            } else {
+                                                Toast.makeText(itemView.getContext(), "No link available for this subitem", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
                                         subitemsLayout.addView(subitemTextView);
                                     }
                                 })
@@ -136,6 +154,9 @@ public class home extends Fragment {
                     }
                 });
             }
+
+
+
         }
     }
 }

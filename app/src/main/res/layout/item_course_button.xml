@@ -8,14 +8,11 @@
         android:id="@+id/courseNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20dp"
         android:textColor="@android:color/black"
         android:padding="16dp"
         android:background="?android:attr/selectableItemBackground"/>
 
-    <!-- Button to open subitems -->
-
-    <!-- List of subitems (hidden by default) -->
     <LinearLayout
         android:id="@+id/subitemsLayout"
         android:layout_width="match_parent"
@@ -24,6 +21,13 @@
         android:visibility="gone">
 
         <!-- Add subitem views dynamically here -->
+        <TextView
+            android:id="@+id/subitemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:padding="16dp"/>
 
     </LinearLayout>
 

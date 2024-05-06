@@ -1,35 +1,30 @@
 package com.py.pydroid_mohak.instructor;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.py.pydroid_mohak.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CreateActivity extends AppCompatActivity {
 
     private EditText courseNameEditText, courseIdEditText, courseDescriptionEditText;
-    private Button addSubitemButton, saveCourseButton;
-    private List<Subitem> subitemsList;
+    private Button saveCourseButton, deleteCourseButton; // Add delete course button
     private FirebaseFirestore db;
     private String currentUserID;
 
@@ -41,10 +36,9 @@ public class CreateActivity extends AppCompatActivity {
         courseNameEditText = findViewById(R.id.courseNameEditText);
         courseIdEditText = findViewById(R.id.courseIdEditText);
         courseDescriptionEditText = findViewById(R.id.courseDescriptionEditText);
-        addSubitemButton = findViewById(R.id.addSubitemButton);
         saveCourseButton = findViewById(R.id.saveCourseButton);
+        deleteCourseButton = findViewById(R.id.deleteCourseButton); // Initialize delete course button
 
-        subitemsList = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -52,102 +46,76 @@ public class CreateActivity extends AppCompatActivity {
             currentUserID = currentUser.getUid();
         }
 
-        addSubitemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAddSubitemDialog();
-            }
-        });
-
         saveCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveCourseToFirestore();
             }
         });
-    }
 
-    private void openAddSubitemDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Subitem");
-
-        // Create new EditTexts for subitem name and link
-        final EditText subitemNameEditText = new EditText(this);
-        final EditText subitemLinkEditText = new EditText(this);
-        subitemNameEditText.setHint("Subitem Name");
-        subitemLinkEditText.setHint("Subitem Link");
-
-        // Add the EditTexts to the dialog
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.addView(subitemNameEditText);
-        layout.addView(subitemLinkEditText);
-        builder.setView(layout);
-
-        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        deleteCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String subitemName = subitemNameEditText.getText().toString().trim();
-                String subitemLink = subitemLinkEditText.getText().toString().trim();
-                if (!subitemName.isEmpty() && !subitemLink.isEmpty()) {
-                    Subitem subitem = new Subitem(subitemName, subitemLink);
-                    subitemsList.add(subitem);
-                    Toast.makeText(CreateActivity.this, "Subitem added", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                String courseId = courseIdEditText.getText().toString().trim();
+                if (!courseId.isEmpty()) {
+                    deleteCourseFromFirestore(courseId);
                 } else {
-                    Toast.makeText(CreateActivity.this, "Please enter both subitem name and link", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateActivity.this, "Please enter a course ID to delete", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
     }
 
     private void saveCourseToFirestore() {
-        // Get input values from EditTexts
         String courseName = courseNameEditText.getText().toString().trim();
         String courseId = courseIdEditText.getText().toString().trim();
         String courseDescription = courseDescriptionEditText.getText().toString().trim();
 
-        // Check if any field is empty
         if (courseName.isEmpty() || courseId.isEmpty() || courseDescription.isEmpty()) {
             Toast.makeText(CreateActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Create a map to store course data
         Map<String, Object> courseData = new HashMap<>();
         courseData.put("name", courseName);
         courseData.put("id", courseId);
         courseData.put("description", courseDescription);
-        courseData.put("userId", currentUserID); // Add currentUserID to the course data
+        courseData.put("userId", currentUserID);
 
-        // Create a list to store subitems
-        List<Map<String, Object>> subitemsData = new ArrayList<>();
-        for (Subitem subitem : subitemsList) {
-            Map<String, Object> subitemData = new HashMap<>();
-            subitemData.put("name", subitem.getName());
-            subitemData.put("link", subitem.getLink());
-            subitemsData.add(subitemData);
-        }
-        courseData.put("subitems", subitemsData);
-
-        // Add course data to Firestore
         db.collection("courses")
-                .add(courseData)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                .document(courseId)
+                .set(courseData)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(CreateActivity.this, "Course created successfully", Toast.LENGTH_SHORT).show();
-                            finish(); // Finish the activity
+                            finish();
                         } else {
                             Toast.makeText(CreateActivity.this, "Error creating course: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                    }
+                });
+    }
+
+    private void deleteCourseFromFirestore(String courseId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("courses").document(courseId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Course deleted successfully
+                        Toast.makeText(CreateActivity.this, "Course deleted successfully", Toast.LENGTH_SHORT).show();
+                        // Optionally, update UI or perform any other actions
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Failed to delete course
+                        Toast.makeText(CreateActivity.this, "Failed to delete course: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        // Optionally, handle the error or display an error message to the user
                     }
                 });
     }

@@ -36,13 +36,15 @@
         android:text="Save Course" />
 
     <Button
-        android:id="@+id/addSubitemButton"
-        android:layout_width="126dp"
+        android:id="@+id/deleteCourseButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/saveCourseButton"
         android:layout_alignStart="@+id/saveCourseButton"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="28dp"
-        android:text="Button" />
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Delete Course" />
+
 
 </RelativeLayout>
