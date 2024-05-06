@@ -19,9 +19,6 @@
             android:name=".instructor.CourseActivity"
             android:exported="false" />
         <activity
-            android:name=".instructor.CreateActivity"
-            android:exported="false" />
-        <activity
             android:name=".InstructorActivity"
             android:exported="false" />
         <activity
@@ -37,7 +34,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
-        <activity android:name=".Admin" />
         <activity android:name=".forgotpwd" />
         <activity android:name=".MainActivity" />
     </application>

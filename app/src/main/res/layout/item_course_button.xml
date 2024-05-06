@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Course name -->
+    <TextView
+        android:id="@+id/courseNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:padding="16dp"
+        android:background="?android:attr/selectableItemBackground"/>
+
+    <!-- Button to open subitems -->
+
+    <!-- List of subitems (hidden by default) -->
+    <LinearLayout
+        android:id="@+id/subitemsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Add subitem views dynamically here -->
+
+    </LinearLayout>
+
+</LinearLayout>

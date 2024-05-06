@@ -29,6 +29,7 @@ public class Course {
         return name;
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -39,5 +40,8 @@ public class Course {
 
     public String getUserId() {
         return userId;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -27,21 +27,22 @@
         android:layout_margin="16dp"/>
 
     <Button
-        android:id="@+id/addSubitemButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Subitem"
-        android:layout_below="@id/courseDescriptionEditText"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
-
-    <Button
         android:id="@+id/saveCourseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Course"
-        android:layout_below="@id/addSubitemButton"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_below="@+id/courseDescriptionEditText"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Save Course" />
+
+    <Button
+        android:id="@+id/addSubitemButton"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveCourseButton"
+        android:layout_alignStart="@+id/saveCourseButton"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="28dp"
+        android:text="Button" />
 
 </RelativeLayout>

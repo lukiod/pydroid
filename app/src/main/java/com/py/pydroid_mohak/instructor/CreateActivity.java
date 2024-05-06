@@ -31,7 +31,7 @@ public class CreateActivity extends AppCompatActivity {
     private Button addSubitemButton, saveCourseButton;
     private List<Subitem> subitemsList;
     private FirebaseFirestore db;
-
+    private String currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,11 @@ public class CreateActivity extends AppCompatActivity {
 
         subitemsList = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            currentUserID = currentUser.getUid();
+        }
 
         addSubitemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,20 +107,7 @@ public class CreateActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-
-
-// Inside your activity class
-
     private void saveCourseToFirestore() {
-        // Get current user ID
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            // User not logged in
-            Toast.makeText(CreateActivity.this, "User not logged in", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String userId = currentUser.getUid();
-
         // Get input values from EditTexts
         String courseName = courseNameEditText.getText().toString().trim();
         String courseId = courseIdEditText.getText().toString().trim();
@@ -132,7 +124,7 @@ public class CreateActivity extends AppCompatActivity {
         courseData.put("name", courseName);
         courseData.put("id", courseId);
         courseData.put("description", courseDescription);
-        courseData.put("userId", userId); // Add current user ID
+        courseData.put("userId", currentUserID); // Add currentUserID to the course data
 
         // Create a list to store subitems
         List<Map<String, Object>> subitemsData = new ArrayList<>();
@@ -159,6 +151,4 @@ public class CreateActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }

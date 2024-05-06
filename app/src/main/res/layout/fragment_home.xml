@@ -1,91 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".home">
 
-    <View
-        android:id="@+id/rectangle_6"
-        android:layout_width="360dp"
-        android:layout_height="102dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle_6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/seting"
-        android:layout_width="115dp"
-        android:layout_height="51dp"
-        android:gravity="top"
-        android:text="Home"
-        android:textAppearance="@style/chat"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_6"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_6"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_6" />
-
-    <Button
-        android:id="@+id/python"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Python"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_6" />
-
-    <Button
-        android:id="@+id/java"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="88dp"
-        android:text="Java"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/python" />
-
-    <Button
-        android:id="@+id/cq"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="4dp"
-        android:text="C++"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/java" />
-
-    <Button
-        android:id="@+id/rust"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="100dp"
-        android:text="Rust"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cq" />
-
-    <Button
-        android:id="@+id/goo"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="284dp"
-        android:text="Go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rust" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
