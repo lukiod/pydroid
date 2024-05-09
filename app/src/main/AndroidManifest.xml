@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PYDROID"
         tools:targetApi="31">
         <activity
+            android:name=".YouTubePlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".instructor.CreateActivity"
             android:exported="false" />
         <activity
@@ -36,6 +39,10 @@
         <activity android:name=".Register" />
         <activity android:name=".forgotpwd" />
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.youtube.player.API_KEY"
+            android:value="AIzaSyAXcXgXyraSBi4t_DfH4J24Pxvfl2l4RSw" />
     </application>
 
 </manifest>

@@ -150,6 +150,12 @@ public class CourseActivity extends AppCompatActivity {
                             openAddSubitemDialog(courseId, context);
                         });
 
+                        // Add a button to delete subitems
+                        builder.setNeutralButton("Delete Subitem", (dialog, which) -> {
+                            // Call a method to handle deleting subitems
+                            openDeleteSubitemDialog(courseId, context);
+                        });
+
                         // Add a button to close the dialog
                         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
 
@@ -207,5 +213,49 @@ public class CourseActivity extends AppCompatActivity {
                         Toast.makeText(context, "Failed to add subitem: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
+        private static void openDeleteSubitemDialog(String courseId, Context context) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Delete Subitem");
+
+            // Create an EditText for the subitem name
+            final EditText subitemNameEditText = new EditText(context);
+            subitemNameEditText.setHint("Subitem Name");
+
+            // Add the EditText to the dialog
+            LinearLayout layout = new LinearLayout(context);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            layout.addView(subitemNameEditText);
+            builder.setView(layout);
+
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                String subitemName = subitemNameEditText.getText().toString().trim();
+                if (!subitemName.isEmpty()) {
+                    deleteSubitemFromFirestore(courseId, subitemName, context);
+                } else {
+                    Toast.makeText(context, "Please enter the subitem name", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.create().show();
+        }
+
+        private static void deleteSubitemFromFirestore(String courseId, String subitemName, Context context) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("courses")
+                    .document(courseId)
+                    .collection("subitems")
+                    .whereEqualTo("name", subitemName)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            document.getReference().delete();
+                        }
+                        Toast.makeText(context, "Subitem deleted successfully", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(context, "Failed to delete subitem: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        }
+
     }
 }

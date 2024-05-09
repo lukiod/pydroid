@@ -6,12 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".forgotpwd">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:id="@+id/android_lar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:clipToOutline="true"
         tools:ignore="MissingConstraints,UnusedAttribute"
         tools:layout_editor_absoluteX="0dp"
@@ -43,16 +49,6 @@
             android:text="@string/email"
             android:textAppearance="@style/email" />
 
-        <View
-            android:id="@+id/rectangle_1"
-            android:layout_width="287dp"
-            android:layout_height="42dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="327dp"
-            android:background="@drawable/rectangle_1" />
-
         <EditText
             android:id="@+id/loginEmail1"
             android:layout_width="286dp"
@@ -60,11 +56,12 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="42dp"
-            android:layout_marginTop="326dp"
+            android:layout_marginTop="339dp"
+            android:drawableLeft="@drawable/email"
             android:ems="10"
             android:hint="pydroid@gmail.com"
             android:inputType="textEmailAddress"
-            android:textColor="#000000" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/frgtpwd1"

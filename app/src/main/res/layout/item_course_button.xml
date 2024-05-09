@@ -1,18 +1,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Course name -->
-    <TextView
-        android:id="@+id/courseNameTextView"
+    <!-- Course name and Enrollment button container -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@android:color/black"
-        android:padding="16dp"
-        android:background="?android:attr/selectableItemBackground"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
+        <!-- Course name TextView -->
+        <TextView
+            android:id="@+id/courseNameTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/rectangle_1"
+            tools:text="Course Name" />
+
+        <!-- Enrollment button -->
+        <Button
+            android:id="@+id/enrollmentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enroll"
+            android:textColor="@color/black"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp"
+            />
+
+    </LinearLayout>
+
+    <!-- Subitems layout -->
     <LinearLayout
         android:id="@+id/subitemsLayout"
         android:layout_width="match_parent"
@@ -21,6 +51,8 @@
         android:visibility="gone">
 
         <!-- Add subitem views dynamically here -->
+
+        <!-- TextView for subitem name -->
         <TextView
             android:id="@+id/subitemTextView"
             android:layout_width="match_parent"
@@ -28,6 +60,8 @@
             android:textSize="20dp"
             android:textColor="@android:color/black"
             android:padding="16dp"/>
+
+        <!-- Play button overlay (ImageView or ImageButton) -->
 
     </LinearLayout>
 

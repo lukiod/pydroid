@@ -79,6 +79,9 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+
 
 
 

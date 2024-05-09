@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:id="@+id/android_lar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:clipToOutline="true"
         tools:ignore="MissingConstraints,UnusedAttribute"
         tools:layout_editor_absoluteX="1dp"
@@ -41,16 +47,6 @@
             android:text="Name"
             android:textAppearance="@style/email" />
 
-        <View
-            android:id="@+id/rectangle_1"
-            android:layout_width="287dp"
-            android:layout_height="42dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="225dp"
-            android:background="@drawable/rectangle_1" />
-
         <EditText
             android:id="@+id/registerName"
             android:layout_width="291dp"
@@ -58,12 +54,12 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="42dp"
-            android:layout_marginTop="222dp"
+            android:layout_marginTop="234dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="Full Name"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -80,26 +76,10 @@
             android:text="@string/email"
             android:textAppearance="@style/email" />
 
-        <View
-            android:id="@+id/rectangle_2"
-            android:layout_width="287dp"
-            android:layout_height="42dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="320dp"
-            android:background="@drawable/rectangle_1" />
 
 
-        <View
-            android:id="@+id/rectangle_3"
-            android:layout_width="287dp"
-            android:layout_height="42dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="415dp"
-            android:background="@drawable/rectangle_1" />
+
+
 
         <TextView
             android:id="@+id/phon"
@@ -137,7 +117,7 @@
             android:ems="10"
             android:hint="+911234567890"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -154,15 +134,7 @@
             android:text="Back To Login!"
             android:textAppearance="@style/email" />
 
-        <View
-            android:id="@+id/rectangle_4"
-            android:layout_width="287dp"
-            android:layout_height="42dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="505dp"
-            android:background="@drawable/rectangle_1" />
+
 
         <EditText
             android:id="@+id/registerEmail"
@@ -176,7 +148,7 @@
             android:ems="10"
             android:hint="pydroid@gmail.com"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -193,7 +165,7 @@
             android:ems="10"
             android:hint="Pydroid@123"
             android:inputType="textPersonName"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

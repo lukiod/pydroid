@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class setting extends Fragment {
     private FirebaseAuth mAuth;
@@ -203,44 +204,47 @@ public class setting extends Fragment {
     private void deleteAccountAfterReAuthentication() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            // Delete Firestore data
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("Users").document(currentUser.getUid())
-                    .delete()
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            // Firestore data deleted successfully
-                            // Now, delete the user account
-                            currentUser.delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // User account deleted successfully
-                                            // Navigate to the login screen or another relevant activity
-                                            Intent intent = new Intent(getActivity(), Login.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                            startActivity(intent);
-                                            getActivity().finish(); // Finish the current activity
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            // Failed to delete user account
-                                            // Handle the error
-                                            Toast.makeText(getActivity(), "Failed to delete account: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+            String userId = currentUser.getUid();
+
+            // Delete user's chat history
+            db.collection("chats")
+                    .whereEqualTo("userId", userId)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            db.collection("chats").document(document.getId()).delete();
                         }
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Failed to delete Firestore data
-                            // Handle the error
-                            Toast.makeText(getActivity(), "Failed to delete user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    .addOnFailureListener(e -> {
+                        Log.e(TAG, "Failed to delete chat history: " + e.getMessage(), e);
+                    });
+
+            // Delete Firestore data related to the user
+            db.collection("Users").document(userId)
+                    .delete()
+                    .addOnSuccessListener(aVoid -> {
+                        // Firestore data deleted successfully
+                        // Now, delete the user account
+                        currentUser.delete()
+                                .addOnSuccessListener(aVoid1 -> {
+                                    // User account deleted successfully
+                                    // Navigate to the login screen or another relevant activity
+                                    Intent intent = new Intent(getActivity(), Login.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    getActivity().finish(); // Finish the current activity
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Failed to delete user account
+                                    // Handle the error
+                                    Toast.makeText(getActivity(), "Failed to delete account: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    })
+                    .addOnFailureListener(e -> {
+                        // Failed to delete Firestore data
+                        // Handle the error
+                        Toast.makeText(getActivity(), "Failed to delete user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
     }
